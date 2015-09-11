@@ -16,13 +16,13 @@ Folder System
 Get Started
 --------------
 * install composer using the following command
-.. code-block:: bash
+```sh
  curl -sS https://getcomposer.org/installer | php
-..
+```
 * After Completion of first Step use the following command to install dependencies
-.. code-block:: bash
+```sh
 php composer.phar install
-..
+```
 
 
 ### lib/
