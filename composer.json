@@ -1,0 +1,24 @@
+{
+    "name":"Buildcorner.com",
+    "type":"Website",
+    "description":"Slim API implication for Buildcorner for serving angular application",
+    "keywords":["buildcorner"],
+    "homepage":"buildcorner.com",
+    "license":"MIT",
+    "authors":[
+        {
+            "name":"Ankit Silaich",
+            "name" : "Rohit Nathaiya"
+        }
+    ],
+    "require":{
+        "php":">=5.3.0",
+        "slim/slim":"2.*",
+         "vrana/notorm": "dev-master"
+    },
+    "autoload":{
+        "psr-0":{
+            "": ""
+        }
+    }
+}
