@@ -1,20 +1,19 @@
 {
     "name":"Buildcorner.com",
-    "type":"Website",
-    "description":"Slim API implication for Buildcorner for serving angular application",
-    "keywords":["buildcorner"],
-    "homepage":"buildcorner.com",
+    "type":"framework",
+    "description":"MVC for the PHP microframework Slim",
+    "keywords":["microframework", "rest", "router", "mvc"],
+    "homepage":"https://github.com/revuls/SlimMVC",
     "license":"MIT",
     "authors":[
         {
-            "name":"Ankit Silaich",
-            "name" : "Rohit Nathaiya"
+            "name":"Ankit silaich"
         }
     ],
     "require":{
-        "php":">=5.3.0",
+        "php":"5.3.*",
         "slim/slim":"2.*",
-         "vrana/notorm": "dev-master"
+        "vrana/notorm" : "dev-master"
     },
     "autoload":{
         "psr-0":{

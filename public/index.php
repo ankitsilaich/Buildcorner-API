@@ -10,14 +10,15 @@ require '../config.php';
 $app = new \Slim\Slim(array(
     'debug' => true,
 ));
-// $models = glob('../models/*.php');
-// foreach ($models as $model) {
-//     require $model;
-// }
+$controllers = glob('../controllers/*.php');
+foreach ($controllers as $controller) {
+    require $controller;
+}
 // Automatically load router files
-$routers = glob('../routers/*.router.php');
+$routers = glob('../routes/*.routes.php');
 foreach ($routers as $router) {
     require $router;
 }
+
 
 $app->run();

@@ -4,14 +4,15 @@ Buildcorner API
 
 Folder System
 ---------------
-* lib/
+* -- lib/
     * Config.php (Class to store with config variables)
-    * Core.php (Singleton PDO connection to the DB)
-* models/
-* public/
-* routers/
-	* name.router.php (routes by functionalities)
-* templates/
+    * Core.php (Singleton PDO connection to the DB and passed into NotORM)
+* -- controllers/    
+* -- models/
+* -- public/
+* -- routes/
+	* name.routes.php (routes by functionalities)
+
 
 Get Started
 --------------
@@ -34,78 +35,75 @@ Here we have the core classes of the connection with the DB
 Add the model classes here.
 We are using PDO for the Database.
 
-Example of class:
+Example of Base Model:
+models/Base.php
+```php
+class Base {
 
-Stuff.php
+	protected $db;
+  protected $core;
+
+
+  public function __construct()
+   {
+		$this->core = Core::getInstance(); //getting instance from core
+    $this->db = $this->core->connection; //setting models $db to connection with database and use NOTORM
+   }
+
+}
+
+```
+Example of Color model extending Base model
+Colors.php
 
 ```php
-class Stuff {
+class Colors extends Base {
 
-    protected $core;
+	public function getColors(){
+		$colors = array();
+		foreach ($this->db->colors() as $color) {
+			$colors[] = $color['color_name'];
+		}
+			return $colors;
+	}
 
-    function __construct() {
-        $this->core = Core::getInstance();
-    }
-
-    // Get all stuff
-    public function getAllStuff() {
-        $r = array();
-
-        $sql = "SELECT * FROM stuff";
-        $stmt = $this->core->dbh->prepare($sql);
-
-        if ($stmt->execute()) {
-            $r = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-        } else {
-            $r = 0;
-        }
-        return $r;
-    }
 }
 ```
 
-### public/
+### controllers/
+All the controllers are written in this folder and they are used for controlling the routes.You can find all the function that are used in routes folder.
 
-All the public files:
-* Images, CSS and JS files
-* index.php
-
-### routers/
+Example of a controller
+```php
+class ColorsControllers extends Base
+{
+  public static function allColors()
+    {
+        $colors = new Colors();
+        $data = $colors->getColors();
+        echo json_encode($data);
+    }
+}
+```
+### routes/
 
 All the files with the routes. Each file contents the routes of an specific functionality.
-It is very important that the names of the files inside this folder follow this pattern: name.router.php
+It is very important that the names of the files inside this folder follow this pattern: name.routes.php
 
 Example of router file:
 
-stuff.router.php
+color.router.php
 
 ```php
-// Get stuff
-$app->get('/stuff', function () use ($app) {
-    echo 'This is a GET route';
-});
-
-//Create user
-$app->post('/stuff', function () use ($app) {
-    echo 'This is a POST route';
-});
-
-// PUT route
-$app->put('/stuff', function () {
-    echo 'This is a PUT route';
-});
-
-// DELETE route
-$app->delete('/stuff', function () {
-    echo 'This is a DELETE route';
-});
+//to fetch all the colors we can directly call the controller from here
+$app->get('/colors',function(){ColorsControllers::allColors();});
 ```
 
 
-How to Contribute
+How to Work with this Repository
 -----------------
 ### Pull Requests
 
-1. Fork the SlimMVC repository
+1. Fork the Buildcorner-API repository
 2. Create a new branch for each feature or improvement
 3. Send a pull request from each feature branch to the develop branch

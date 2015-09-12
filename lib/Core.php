@@ -6,7 +6,7 @@ use PDO;
 use NotORM;
 
 class Core {
-    public $db;
+    public $connection;
     private static $instance;
 
     private function __construct() {
@@ -20,7 +20,7 @@ class Core {
         // getting DB password from config
         $password = Config::read('db.password');
         $pdo = new PDO($dsn, $user, $password);
-        $this->db = new NotORM($pdo);
+        $this->connection = new NotORM($pdo);
     }
 
     public static function getInstance() {
