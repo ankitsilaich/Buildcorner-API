@@ -41,15 +41,14 @@ models/Base.php
 ```php
 
 class Base {
+    protected $db;
+    protected $core;
 
-	protected $db;
-  protected $core;
 
-
-  public function __construct()
-   {
-		$this->core = Core::getInstance(); //getting instance from core
-    $this->db = $this->core->connection; //setting models $db to connection with database and use NOTORM
+    public function __construct()
+    {
+		    $this->core = Core::getInstance(); //getting instance from core
+        $this->db = $this->core->connection; //setting models $db to connection with database and use NOTORM
    }
 
 }
