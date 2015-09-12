@@ -1,6 +1,7 @@
 Buildcorner API
 =======
-
+[![Code Climate](https://codeclimate.com/github/ankitsilaich/Buildcorner-API/badges/gpa.svg)](https://codeclimate.com/github/ankitsilaich/Buildcorner-API)
+[![Test Coverage](https://codeclimate.com/github/ankitsilaich/Buildcorner-API/badges/coverage.svg)](https://codeclimate.com/github/ankitsilaich/Buildcorner-API/coverage)
 
 Folder System
 ---------------
