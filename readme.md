@@ -46,8 +46,8 @@ class Base {
     protected $core;
 
     public function __construct(){
-		    $this->core = Core::getInstance(); //getting instance from core
-        $this->db = $this->core->connection; //setting models $db to connection with database and use NOTORM
+		      $this->core = Core::getInstance(); //getting instance from core
+          $this->db = $this->core->connection; //setting models $db to connection with database and use NOTORM
     }
 
 }
