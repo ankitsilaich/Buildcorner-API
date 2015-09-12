@@ -7,7 +7,7 @@ Folder System
 * -- lib/
     * Config.php (Class to store with config variables)
     * Core.php (Singleton PDO connection to the DB and passed into NotORM)
-* -- controllers/    
+* -- controllers/
 * -- models/
 * -- public/
 * -- routes/
@@ -33,11 +33,13 @@ Here we have the core classes of the connection with the DB
 ### models/
 
 Add the model classes here.
-We are using PDO for the Database.
+We are using NotORM for the Database.
 
 Example of Base Model:
 models/Base.php
+
 ```php
+
 class Base {
 
 	protected $db;
@@ -53,6 +55,7 @@ class Base {
 }
 
 ```
+
 Example of Color model extending Base model
 Colors.php
 
@@ -64,7 +67,7 @@ class Colors extends Base {
 		foreach ($this->db->colors() as $color) {
 			$colors[] = $color['color_name'];
 		}
-			return $colors;
+		return $colors;
 	}
 
 }
