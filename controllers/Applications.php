@@ -1,12 +1,12 @@
 <?php
 namespace controllers;
 use models\Applications;
-// class AppControllers extends Base
+// class ApplicationControllers extends Base
 // {
 //   public static function allApplications()
 //     {
 //         $applications = new Applications();
-//         $d = $applications->getApplication();
-//         echo json_encode($d);
+//         $data = $applications->getApplication();
+//         echo json_encode($data);
 //     }
 // }

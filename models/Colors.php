@@ -19,5 +19,13 @@ class Colors extends Base {
 		}
 			return $colors;
 	}
+	public static function productColors($product_id){
+		$colors = array();
+		foreach ($this->db->product_colors()->where('products_id',$product_id) as $color) {
+			$colors[] = $color['color_name'];
+		}
+			return $colors;
+
+  }
 
 }
