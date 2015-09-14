@@ -18,7 +18,7 @@ class Base
         );
         /** global javascript var */
         $this->data['global'] = array();
-      
+
             }
 
 
