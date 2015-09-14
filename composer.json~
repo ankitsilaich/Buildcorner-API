@@ -10,8 +10,18 @@
             "name":"Ankit silaich"
         }
     ],
+
+
+
+
+
+
+
+
+
+
     "require":{
-        "php":">=5.3.*",
+  
         "slim/slim":"2.*",
         "vrana/notorm" : "dev-master"
     },
