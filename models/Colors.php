@@ -1,10 +1,4 @@
 <?php
-
-/**
- * This is an example of User Class using PDO
- *
- */
-
 namespace models;
 use lib\Core;
 use PDO;
@@ -19,7 +13,7 @@ class Colors extends Base {
 		}
 			return $colors;
 	}
-	public static function productColors($product_id){
+	public function productColors($product_id){
 		$colors = array();
 		foreach ($this->db->product_colors()->where('products_id',$product_id) as $color) {
 			$colors[] = $color['color_name'];

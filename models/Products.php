@@ -2,6 +2,12 @@
 namespace models;
 use lib\Core;
 use models\Colors;
+use models\Usages;
+use models\Applications;
+use models\Images;
+use models\ConceptImages;
+use models\Types;
+
 use PDO;
 
 
@@ -11,46 +17,20 @@ class Products extends Base
 
     public function getProduct($id = null)
     {
-        $product_category = array();
-        $products         = array();
-        $usages           = array();
-        $applications     = array();
-        $images           = array();
-        // $colors           = array();
-        $concepts         = array();
-        // foreach ($this->db->product_colors()->where('products_id', $id) as $product_colors) {
-        //     $colors[] = $product_colors['color_name'];
-        // }
-        foreach ($this->db->product_usages()->where('products_id', $id) as $product_usages) {
-            $usages[] = $product_usages['usage_name'];
-        }
-        foreach ($this->db->product_applications()->where('products_id', $id) as $product_applications) {
-            $applications[] = $product_applications['application_name'];
-        }
-        foreach ($this->db->product_images()->where('products_id', $id) as $product_images) {
-            $images[] = $product_images['image_name'];
-        }
-        foreach ($this->db->concept_images()->where('products_id', $id) as $product_images) {
-            $concepts[] = $product_images['concept_name'];
-        }
+
+        $products = array();
         if ($id == null or $id == 'all') {
             $temp = $this->db->products();
         } else {
             $temp = $this->db->products()->where('id', $id);
         }
-        foreach ($this->db->types() as $product_type) {
-            if ($product_type['id'] == $temp['type_id'])
-                $product_category = $product_type['type_name'];
-        }
-
         foreach ($temp as $p) {
-                        // $products['product_category']=$product_category
             $products[] = array(
                 'product_id' => $p['id'],
                 'product_brand' => $p['product_brand'],
                 'product_name' => $p['product_name'],
                 'product_price' => $p['product_price'],
-               	'product_category' => $product_category,
+                'product_category' => Types::productType($p['type_id']),
                 'product_type_id' => $p['type_id'],
                 'product_desc' => $p['product_desc'],
                 'product_origin_country' => $p['product_origin_country'],
@@ -64,13 +44,13 @@ class Products extends Base
                 'product_t_unit' => $p['product_thickness_unit'],
                 'product_items_per_box' => $p['product_items_per_box'],
                 'product_shape' => $p['product_shape'],
-                'product_applications' => $applications,
+                'product_applications' => Applications::productApplications($p['id']),
                 'product_look' => $p['product_look'],
                 'product_finish_type' => $p['product_finish_type'],
-                'product_usages' => $usages,
+                'product_usages' => Usages::productUsages($p['id']),
                 'product_colors' => Colors::productColors($p['id']),
-                'product_img' => $images,
-                'product_concepts' => $concepts,
+                'product_img' => Images::productImages($p['id']),
+                'product_concepts' => ConceptImages::productConcepts($p['id']),
                 'product_features' => $p['product_desc'],
                 'product_rating' => $p['product_rating'],
                 'product_isDiscountAvailable' => $p['isDiscountAvailable'],
